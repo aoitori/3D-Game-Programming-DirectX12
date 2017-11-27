@@ -39,12 +39,15 @@ void BoxApp::Draw(const GameTimer& gt)
 
 	mCommandList->IASetVertexBuffers(0, 1, &mBoxGeo->VertexBufferView());
 	//mCommandList->IASetIndexBuffer(&mBoxGeo->IndexBufferView());
+	
+//****************************Changed********************************************	
 	mCommandList->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
  //↑Change Primitive Topology to POINTLIST(Q1), LINESTRIP(Q2), LINELIST(Q3), TIRANGLESTRIP(Q4),TIRANGLELIST(Q5).
     
     mCommandList->SetGraphicsRootDescriptorTable(0, mCbvHeap->GetGPUDescriptorHandleForHeapStart());
 
     mCommandList->DrawInstanced(8,8,0,0);//mCommandList->DrawInstanced(9,9,0,0); (Question 5)
+//****************************Changed********************************************	
 	
     // Indicate a state transition on the resource usage.
 	mCommandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(CurrentBackBuffer(),
@@ -69,6 +72,7 @@ void BoxApp::Draw(const GameTimer& gt)
 
 void BoxApp::BuildBoxGeometry()
 {
+//****************************Changed********************************************
     std::array<Vertex, 8> vertices =
     {
 		Vertex{XMFLOAT3{-1.5f, -0.4f, 0.0f},XMFLOAT4{Colors::GhostWhite}},
@@ -97,6 +101,7 @@ void BoxApp::BuildBoxGeometry()
 		Vertex{ XMFLOAT3{ +2.5f, 0.2f, 0.0f },XMFLOAT4{ Colors::Snow} },
     };
    */
+//****************************Changed********************************************
     const UINT vbByteSize = (UINT)vertices.size() * sizeof(Vertex);
 	//const UINT ibByteSize = (UINT)indices.size() * sizeof(std::uint16_t);
 
